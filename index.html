@@ -1,73 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Attendance Calculator</title>
-  <style>
-    body {
-      font-family: Arial;
-      background: #f4f4f4;
-      padding: 20px;
-      max-width: 500px;
-      margin: auto;
-    }
-    input, button {
-      padding: 10px;
-      margin: 10px 0;
-      width: 100%;
-    }
-    #result {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Frontend</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Attendance Calculator</h2>
-  <label>Total Classes Conducted:</label>
-  <input type="number" id="total" required>
+  <div class="container">
+    <h1>Welcome to My Frontend Project</h1>
+    <p>This is a clean, modern design with a gradient background.</p>
+    <button onclick="showMessage()">Click Me</button>
+    <p id="output"></p>
+  </div>
 
-  <label>Classes Attended:</label>
-  <input type="number" id="attended" required>
-
-  <label>Minimum Attendance (%):</label>
-  <input type="number" id="required" value="75" required>
-
-  <button onclick="calculate()">Submit</button>
-
-  <div id="result"></div>
-
-  <script>
-    function calculate() {
-      const total = parseInt(document.getElementById("total").value);
-      const attended = parseInt(document.getElementById("attended").value);
-      const required = parseFloat(document.getElementById("required").value);
-
-      if (attended > total || total <= 0 || attended < 0 || required <= 0 || required > 100) {
-        document.getElementById("result").innerText = "Please enter valid inputs.";
-        return;
-      }
-
-      const currentPercent = (attended / total) * 100;
-
-      if (currentPercent === required) {
-        document.getElementById("result").innerText = "You need to attend all upcoming classes.";
-      } else if (currentPercent > required) {
-        let missable = 0;
-        while ((attended / (total + missable)) * 100 >= required) {
-          missable++;
-        }
-        missable--;
-        document.getElementById("result").innerText = `You can miss ${missable} more classes.`;
-      } else {
-        let mustAttend = 0;
-        while (((attended + mustAttend) / (total + mustAttend)) * 100 < required) {
-          mustAttend++;
-        }
-        document.getElementById("result").innerText = `You need to attend the next ${mustAttend} classes.`;
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
